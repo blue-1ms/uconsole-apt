@@ -1,0 +1,15 @@
+*.deb
+*.ddeb
+*.udeb
+*.dsc
+*.changes
+*.buildinfo
+*.tar.zst
+Packages
+Packages.gz
+Sources
+Sources.gz
+InRelease
+Release.gpg
+.DS_Store
+__pycache__/

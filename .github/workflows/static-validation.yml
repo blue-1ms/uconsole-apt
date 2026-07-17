@@ -1,0 +1,33 @@
+name: Static validation
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  policy:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Check out policy source
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+
+      - name: Validate release policy
+        run: python3 scripts/validate-policy.py
+
+      - name: Reject committed binary packages and APT indexes
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git ls-files | grep -E '\.(deb|ddeb|udeb|dsc|changes|buildinfo|tar\.zst)$|(^|/)(Packages|Sources|InRelease|Release\.gpg)$'; then
+            echo 'Generated packages and repository indexes belong in immutable Release assets, not Git history.' >&2
+            exit 1
+          fi

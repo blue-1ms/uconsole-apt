@@ -1,0 +1,6 @@
+uConsole APT release policy and verification tooling
+Copyright 2026 blue-1ms
+
+Release bundles may contain software from Canonical Ubuntu, the Linux kernel,
+Raspberry Pi, ClockworkPi, AK-Rex and other Ubuntu archive packages. Those
+files retain their upstream licenses, notices and source-package metadata.

@@ -1,0 +1,20 @@
+{
+  "schema": "uconsole-apt-release-policy-v1",
+  "repository": "blue-1ms/uconsole-apt",
+  "immutable": true,
+  "test_image_release_type": "prerelease",
+  "required_assets": [
+    "uconsole-apt-repository-<release>.tar.zst",
+    "SHA256SUMS",
+    "SHA256SUMS.asc",
+    "build-manifest.yaml",
+    "repository-receipt.json",
+    "mounted-image-validation-report.json",
+    "TEST-IMAGE.json",
+    "package-set.sha256"
+  ],
+  "forbidden_publish_options": [
+    "--clobber",
+    "latest"
+  ]
+}
