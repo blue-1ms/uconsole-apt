@@ -18,6 +18,8 @@ def main() -> int:
         raise SystemExit("release policy repository mismatch")
     if policy.get("immutable") is not True or policy.get("test_image_release_type") != "prerelease":
         raise SystemExit("release immutability or prerelease policy is disabled")
+    if policy.get("resume_requires_exact_assets") is not True:
+        raise SystemExit("draft resume must require the exact validated asset set")
     assets = policy.get("required_assets")
     expected = {
         "uconsole-apt-repository-<release>.tar.zst",

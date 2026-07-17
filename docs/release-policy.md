@@ -23,8 +23,9 @@ hashes.
 - Upload starts as a draft and becomes a prerelease only after all remote asset sizes and
   available GitHub SHA-256 digests match the local files.
 - `--clobber`, moving `latest` tags and replacement assets are forbidden.
-- A failed or incomplete upload remains a draft for inspection or deletion; clients never use
-  drafts.
+- A failed or incomplete upload remains a draft; clients never use drafts. A complete draft may
+  be resumed only when its tag, prerelease state and exact asset name/size/digest set match the
+  locally revalidated export. Resume never uploads, replaces or adds an asset.
 - A test image with `candidate: false` is never described as stable.
 
 ## Client trust boundary

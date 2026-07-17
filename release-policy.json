@@ -2,6 +2,7 @@
   "schema": "uconsole-apt-release-policy-v1",
   "repository": "blue-1ms/uconsole-apt",
   "immutable": true,
+  "resume_requires_exact_assets": true,
   "test_image_release_type": "prerelease",
   "required_assets": [
     "uconsole-apt-repository-<release>.tar.zst",
