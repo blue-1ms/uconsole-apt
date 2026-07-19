@@ -45,6 +45,9 @@ def main() -> int:
         "key_fingerprint": "79C0DBFA56EDF5B9E0F807CE8E817BEBC6F4DA87",
         "keyring_path": "/usr/share/keyrings/uconsole-archive-keyring.asc",
         "source_path": "/etc/apt/sources.list.d/uconsole.sources",
+        "quick_setup_allowed": True,
+        "quick_setup_https_trust_disclosed": True,
+        "verified_setup_required": True,
         "global_trust_forbidden": True,
         "downloaded_shell_forbidden": True,
         "platform_installed_before_kernel": True,
@@ -100,6 +103,9 @@ def main() -> int:
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     for required_text in (
         "## First installation",
+        "### Quick setup",
+        "### Verified setup",
+        "trusts the repository key downloaded over HTTPS",
         "set -eu",
         expected_bootstrap["key_fingerprint"],
         expected_bootstrap["keyring_path"],
@@ -133,6 +139,20 @@ Signed-By: /usr/share/keyrings/uconsole-archive-keyring.asc
 Enabled: no"""
     if source_block != expected_source:
         raise SystemExit("README Deb822 source differs from the package-owned source")
+    quick_section = readme.split("### Quick setup", 1)[1].split(
+        "### Verified setup", 1
+    )[0]
+    quick_source_lines = re.findall(
+        r"^\s*'([^']*)'\s*\\?$", quick_section, flags=re.MULTILINE
+    )
+    if "\n".join(quick_source_lines) != expected_source:
+        raise SystemExit(
+            "README quick-setup source differs from the package-owned source"
+        )
+    if (
+        "wget -qO- " + expected_bootstrap["key_url"]
+    ) not in quick_section:
+        raise SystemExit("README quick setup does not download the pinned key URL")
     print("uConsole APT release policy validation passed")
     return 0
 

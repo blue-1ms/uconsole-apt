@@ -17,6 +17,9 @@
     "key_fingerprint": "79C0DBFA56EDF5B9E0F807CE8E817BEBC6F4DA87",
     "keyring_path": "/usr/share/keyrings/uconsole-archive-keyring.asc",
     "source_path": "/etc/apt/sources.list.d/uconsole.sources",
+    "quick_setup_allowed": true,
+    "quick_setup_https_trust_disclosed": true,
+    "verified_setup_required": true,
     "global_trust_forbidden": true,
     "downloaded_shell_forbidden": true,
     "platform_installed_before_kernel": true

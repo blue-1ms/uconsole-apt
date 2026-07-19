@@ -50,7 +50,8 @@ uConsole managed marker. Unmanaged paths are never replaced or deleted.
 ## First-install bootstrap
 
 Public instructions must assume that no uConsole key, source, helper command, or package is
-already installed. The documented bootstrap must:
+already installed. A short HTTPS-based quick setup may be offered, but it must disclose that its
+initial key trust comes from HTTPS. A separate verified setup must:
 
 1. require Ubuntu 26.04 arm64 on the supported uConsole CM4 Lite target;
 2. download the public key without executing downloaded content;
@@ -62,8 +63,9 @@ already installed. The documented bootstrap must:
    active;
 8. run `uconsole-kernel-policy-validate` before installing a kernel update.
 
-The bootstrap key and source content must match the files later owned by `uconsole-platform`, so
-the package can adopt them without changing the trust boundary.
+Both setup paths must use a repository-scoped key and the exact source content later owned by
+`uconsole-platform`, so the package can adopt them without duplication or a configuration-file
+prompt. Neither path may execute downloaded content or use the global APT trusted-key store.
 
 All user-facing repository documentation and GitHub Release notes are maintained in English.
 Release notes are stored under `docs/releases/` and used as the source for GitHub Release bodies.

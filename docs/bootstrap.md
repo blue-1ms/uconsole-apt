@@ -3,8 +3,14 @@
 This guide covers a clean Ubuntu 26.04 arm64 uConsole CM4 Lite installation that has no existing
 uConsole APT source, signing key, or package.
 
-The short installation procedure is in the [repository README](../README.md). This page explains
-the trust model, verification steps, and safe recovery behavior.
+The [repository README](../README.md) provides two supported paths:
+
+- **Quick setup** downloads the key over HTTPS and installs the exact package-owned Deb822
+  configuration. It is intentionally similar to common two-command APT repository setup.
+- **Verified setup** additionally compares the complete signing-key fingerprint before installing
+  either file.
+
+This page explains the trust model, verification steps, and safe recovery behavior.
 
 ## Trust model
 
@@ -19,13 +25,14 @@ The key is stored at `/usr/share/keyrings/uconsole-archive-keyring.asc` and is r
 in `/etc/apt/trusted.gpg.d`, because a globally trusted key could authenticate unrelated APT
 sources.
 
-The initial key is downloaded over HTTPS and its complete fingerprint must match before it is
-installed. Package downloads are then authenticated by the signed `InRelease` metadata. The
-first `uconsole-platform` installation adopts the same source and key files as package-owned
-configuration.
+The quick path trusts the key delivered by the repository's HTTPS endpoint. The verified path
+adds an explicit comparison against the fingerprint above. In both cases, package downloads are
+authenticated by signed `InRelease` metadata. The first `uconsole-platform` installation adopts
+the same source and key files as package-owned configuration.
 
-Never use `trusted=yes`, never skip the fingerprint comparison, and never run a downloaded
-script through a shell.
+Never use `trusted=yes`, never install the key in the global APT trust store, and never run a
+downloaded script through a shell. Use the verified path whenever an independent fingerprint
+check is required.
 
 ## Verify the configured repository
 

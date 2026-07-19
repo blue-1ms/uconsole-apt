@@ -13,6 +13,48 @@ offline repository bundles for auditing and manual recovery.
 These instructions assume that the machine has never used this repository. They are supported
 only on the Ubuntu 26.04 arm64 uConsole CM4 Lite image.
 
+### Quick setup
+
+This is the shortest supported setup. It trusts the repository key downloaded over HTTPS but
+still scopes that key to this repository; it does not add the key to APT's global trust store.
+
+```bash
+wget -qO- https://blue-1ms.github.io/uconsole-apt/uconsole-archive-keyring.asc \
+  | sudo tee /usr/share/keyrings/uconsole-archive-keyring.asc >/dev/null
+
+printf '%s\n' \
+  'Types: deb' \
+  'URIs: https://blue-1ms.github.io/uconsole-apt' \
+  'Suites: stable' \
+  'Components: main' \
+  'Architectures: arm64' \
+  'Signed-By: /usr/share/keyrings/uconsole-archive-keyring.asc' \
+  'Enabled: yes' \
+  '' \
+  'Types: deb' \
+  'URIs: https://blue-1ms.github.io/uconsole-apt' \
+  'Suites: candidate' \
+  'Components: main' \
+  'Architectures: arm64' \
+  'Signed-By: /usr/share/keyrings/uconsole-archive-keyring.asc' \
+  'Enabled: no' \
+  | sudo tee /etc/apt/sources.list.d/uconsole.sources >/dev/null
+
+sudo apt update
+sudo apt install uconsole-platform
+sudo uconsole-kernel-policy-validate
+sudo apt install uconsole-kernel uconsole-plymouth-theme
+sudo reboot
+```
+
+Allow the one or two automatic restarts required by `piboot-try`. Do not power off the device
+while the new slot is being validated.
+
+### Verified setup
+
+Use this procedure when you want to verify the complete signing-key fingerprint before installing
+the repository configuration.
+
 Install the bootstrap tools and confirm the architecture:
 
 ```bash
@@ -84,8 +126,8 @@ sudo reboot
 ```
 
 Allow the one or two automatic restarts required by `piboot-try`. Do not power off the device
-while the new slot is being validated. See [the bootstrap guide](docs/bootstrap.md) for
-verification and recovery details.
+while the new slot is being validated. See [the bootstrap guide](docs/bootstrap.md) for trust,
+verification, and recovery details.
 
 ## Updating an existing installation
 
