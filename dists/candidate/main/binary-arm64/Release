@@ -1,0 +1,6 @@
+Archive: candidate
+Component: main
+Origin: blue-1ms-uconsole
+Label: uConsole Ubuntu
+Architecture: arm64
+Description: Signed uConsole CM4 Lite kernel and platform packages

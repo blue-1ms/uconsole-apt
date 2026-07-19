@@ -1,0 +1,36 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Origin: blue-1ms-uconsole
+Label: uConsole Ubuntu
+Suite: stable
+Codename: stable
+Date: Sun, 19 Jul 2026 04:35:53 UTC
+Architectures: arm64
+Components: main
+Description: Signed uConsole CM4 Lite kernel and platform packages
+MD5Sum:
+ 7efe8b03128ff28e56b5ebf6b909ae5f 6302 main/binary-arm64/Packages
+ f2b68a196de70c87cab9b5aa4f024956 2113 main/binary-arm64/Packages.gz
+ eb0ab8d94ebf69d704cab62bc4480c0f 168 main/binary-arm64/Release
+ 1018e3891fe058a23fed6021ada9a68f 3285994 main/Contents-arm64
+ 2ad101546ce9c4db69cb5dc79805114b 175349 main/Contents-arm64.gz
+SHA1:
+ 97ceb0fd581e9a49ef01f875a737b57401526067 6302 main/binary-arm64/Packages
+ 59aca07c750a72c297da15d87bdd83c94f8fff17 2113 main/binary-arm64/Packages.gz
+ 2eed32fb406e09e499f5e133c28e4d297c3f7938 168 main/binary-arm64/Release
+ afef978b305f66542ac1f0a694f57c48340f0a01 3285994 main/Contents-arm64
+ 179cadcb0138bfa394334c737880ce1f5c4b1880 175349 main/Contents-arm64.gz
+SHA256:
+ fbaf385aeced767e1e9026fc1071ecb158b1e86e1faa3369e8d4e51a3cdbd902 6302 main/binary-arm64/Packages
+ 7d493c716cb65b7cd2c198e449f9aabb9d06fe7968f0b533b44d1ccc36ad0f10 2113 main/binary-arm64/Packages.gz
+ b8d4dd541bf96ac3ab4390a0e4e644664d7d50a0e22ab2544bbb2811f5c860dd 168 main/binary-arm64/Release
+ d40c899e7a44cb9f396c98b87737433332e359457ceb6db220a1f34c0c4cb95d 3285994 main/Contents-arm64
+ 157b5a1f69db733d288c88864202ebd7ef9628d301b0612d13fba14da1955ef7 175349 main/Contents-arm64.gz
+-----BEGIN PGP SIGNATURE-----
+
+iHUEARYKAB0WIQR5wNv6Vu31ueD4B86OgXvrxvTahwUCalxUKQAKCRCOgXvrxvTa
+h+oAAQCXlDxeoea8/0vX8TUe2ou4bgPDS7qx4lEPlnm4D8mJ7QD/UQWXHcImIV1o
+e5EGUtYewRwmtIgH1WMipU6dd51g9gg=
+=T/pi
+-----END PGP SIGNATURE-----

@@ -1,0 +1,26 @@
+Origin: blue-1ms-uconsole
+Label: uConsole Ubuntu
+Suite: candidate
+Codename: candidate
+Date: Sun, 19 Jul 2026 04:35:54 UTC
+Architectures: arm64
+Components: main
+Description: Signed uConsole CM4 Lite kernel and platform packages
+MD5Sum:
+ 7efe8b03128ff28e56b5ebf6b909ae5f 6302 main/binary-arm64/Packages
+ f2b68a196de70c87cab9b5aa4f024956 2113 main/binary-arm64/Packages.gz
+ 321ce3af1ea9a6a2a14db56402ab2843 171 main/binary-arm64/Release
+ 1018e3891fe058a23fed6021ada9a68f 3285994 main/Contents-arm64
+ 2ad101546ce9c4db69cb5dc79805114b 175349 main/Contents-arm64.gz
+SHA1:
+ 97ceb0fd581e9a49ef01f875a737b57401526067 6302 main/binary-arm64/Packages
+ 59aca07c750a72c297da15d87bdd83c94f8fff17 2113 main/binary-arm64/Packages.gz
+ d59d8477accc7e9cfdcb7d1a441cd23a6277b250 171 main/binary-arm64/Release
+ afef978b305f66542ac1f0a694f57c48340f0a01 3285994 main/Contents-arm64
+ 179cadcb0138bfa394334c737880ce1f5c4b1880 175349 main/Contents-arm64.gz
+SHA256:
+ fbaf385aeced767e1e9026fc1071ecb158b1e86e1faa3369e8d4e51a3cdbd902 6302 main/binary-arm64/Packages
+ 7d493c716cb65b7cd2c198e449f9aabb9d06fe7968f0b533b44d1ccc36ad0f10 2113 main/binary-arm64/Packages.gz
+ bdc9e57e0520ae3110f1d8d01ddda967e8acdb0b0ea1698e5475981120220278 171 main/binary-arm64/Release
+ d40c899e7a44cb9f396c98b87737433332e359457ceb6db220a1f34c0c4cb95d 3285994 main/Contents-arm64
+ 157b5a1f69db733d288c88864202ebd7ef9628d301b0612d13fba14da1955ef7 175349 main/Contents-arm64.gz

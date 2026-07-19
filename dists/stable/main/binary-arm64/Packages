@@ -1,0 +1,134 @@
+Package: linux-buildinfo-7.1.3-1003-uconsole
+Source: linux-uconsole
+Version: 7.1.3-1003.1.uconsole.1
+Architecture: arm64
+Maintainer: blue-1ms <19849833+blue-1ms@users.noreply.github.com>
+Installed-Size: 2123
+Homepage: https://github.com/blue-1ms/uconsole-ubuntu-lts
+Priority: optional
+Section: kernel
+Filename: pool/main/l/linux-uconsole/linux-buildinfo-7.1.3-1003-uconsole_7.1.3-1003.1.uconsole.1_arm64.deb
+Size: 345328
+SHA256: 3978036a1dd68b86a8a821623d06e31fe1ed135647cdab1f8665e87b2c14fa28
+SHA1: 98daf8bbf36ea4c987487914609f55f4474a6a5b
+MD5sum: e5f23e791f3b89d7f0115501f2949757
+Description: Build information for the uConsole kernel
+ Final configuration, symbol versions, compiler identity, and source commit.
+
+Package: linux-headers-7.1.3-1003-uconsole
+Source: linux-uconsole
+Version: 7.1.3-1003.1.uconsole.1
+Architecture: arm64
+Maintainer: blue-1ms <19849833+blue-1ms@users.noreply.github.com>
+Installed-Size: 275378
+Depends: make
+Homepage: https://github.com/blue-1ms/uconsole-ubuntu-lts
+Priority: optional
+Section: kernel
+Filename: pool/main/l/linux-uconsole/linux-headers-7.1.3-1003-uconsole_7.1.3-1003.1.uconsole.1_arm64.deb
+Size: 57803894
+SHA256: 0e2e93cb91628d0f9c724a9e0dfc24d6b36858de418676382b06f7466e30d355
+SHA1: cbec0dec4ebb90003203507c0c2bc33d9830e253
+MD5sum: a31cee5686a1ad78e7c7f920d38875da
+Description: Linux kernel headers for ClockworkPi uConsole CM4 Lite
+ Prepared headers and build metadata for external arm64 kernel modules.
+
+Package: linux-image-7.1.3-1003-uconsole
+Source: linux-uconsole
+Version: 7.1.3-1003.1.uconsole.1
+Architecture: arm64
+Maintainer: blue-1ms <19849833+blue-1ms@users.noreply.github.com>
+Installed-Size: 20273
+Depends: initramfs-tools | linux-initramfs-tool, kmod, linux-base, linux-modules-7.1.3-1003-uconsole (= 7.1.3-1003.1.uconsole.1), uconsole-platform (>= 0.1.15)
+Recommends: piboot-try | flash-kernel
+Homepage: https://github.com/blue-1ms/uconsole-ubuntu-lts
+Priority: optional
+Section: kernel
+Filename: pool/main/l/linux-uconsole/linux-image-7.1.3-1003-uconsole_7.1.3-1003.1.uconsole.1_arm64.deb
+Size: 15426814
+SHA256: ad5dead13ca23e21af7e21eec2695fb98cf548903168ffb2d70dc1c533e35896
+SHA1: b41b13c307f22bc1af31190031ffcbbec61f976a
+MD5sum: fe054f6bc9b382f2d5d7e6f7decb249e
+Description: Linux kernel image for ClockworkPi uConsole CM4 Lite
+ Versioned kernel image, CM4 device tree, and reviewed uConsole overlays.
+ Boot firmware updates are delegated to the installed kernel hook provider.
+
+Package: linux-modules-7.1.3-1003-uconsole
+Source: linux-uconsole
+Version: 7.1.3-1003.1.uconsole.1
+Architecture: arm64
+Maintainer: blue-1ms <19849833+blue-1ms@users.noreply.github.com>
+Installed-Size: 414050
+Depends: kmod
+Homepage: https://github.com/blue-1ms/uconsole-ubuntu-lts
+Priority: optional
+Section: kernel
+Filename: pool/main/l/linux-uconsole/linux-modules-7.1.3-1003-uconsole_7.1.3-1003.1.uconsole.1_arm64.deb
+Size: 70031398
+SHA256: c78e6abae148ebddd89be7a56e1424323dae5479d7631219e2c0e74e22420dd0
+SHA1: 6616c05b5a3c966e4918fff763ae2ca75565123e
+MD5sum: 5bf05afc232bdfb8f9192b3e2d6de2e9
+Description: Linux kernel modules for ClockworkPi uConsole CM4 Lite
+ Versioned modules and dependency metadata for the uConsole kernel.
+
+Package: uconsole-kernel
+Source: linux-uconsole
+Version: 7.1.3-1003.1.uconsole.1
+Architecture: arm64
+Maintainer: blue-1ms <19849833+blue-1ms@users.noreply.github.com>
+Installed-Size: 8
+Depends: linux-image-7.1.3-1003-uconsole (= 7.1.3-1003.1.uconsole.1), linux-modules-7.1.3-1003-uconsole (= 7.1.3-1003.1.uconsole.1), linux-headers-7.1.3-1003-uconsole (= 7.1.3-1003.1.uconsole.1), linux-buildinfo-7.1.3-1003-uconsole (= 7.1.3-1003.1.uconsole.1), uconsole-platform (>= 0.1.15)
+Homepage: https://github.com/blue-1ms/uconsole-ubuntu-lts
+Priority: optional
+Section: kernel
+Filename: pool/main/l/linux-uconsole/uconsole-kernel_7.1.3-1003.1.uconsole.1_arm64.deb
+Size: 1522
+SHA256: d4d8714885f64913c63e4a2dc077d40442c51b0bb8c48730fc36593e2a6db191
+SHA1: 8dd424a46c6764524c9cf947620901a1912ba4c7
+MD5sum: bc49b5ccf8ebfe69ae1b22f597bcffb3
+Description: Complete uConsole kernel package set
+ Pulls in the versioned image, modules, headers, and build information.
+
+Package: uconsole-platform
+Source: linux-uconsole-userspace
+Version: 0.1.17
+Architecture: arm64
+Maintainer: blue-1ms <19849833+blue-1ms@users.noreply.github.com>
+Installed-Size: 210
+Depends: accountsservice, adduser, ca-certificates, gnupg, gpgv, linux-firmware-broadcom-wireless (= 20260319.git217ca6e4-0ubuntu1), linux-firmware-raspi (= 14-0ubuntu1), piboot-try, python3, raspi-utils-core, rpi-eeprom, systemd, tar, zstd
+Homepage: https://github.com/blue-1ms/uconsole-ubuntu-lts
+Priority: optional
+Section: admin
+Filename: pool/main/l/linux-uconsole-userspace/uconsole-platform_0.1.17_arm64.deb
+Size: 40018
+SHA256: 2548b0c087de964a257e663fb433089df24cc743ee2bec04e47f43aad2615a79
+SHA1: da0db7c1299be60fe4fac657206db7656f7f4b22
+MD5sum: 6a22678661033896f9078c14329f17c4
+Description: uConsole CM4 platform userspace integration
+ Installs non-kernel platform helpers, generic device access setup, the
+ post-OEM first-administrator detector, speaker/headphone GPIO routing, and
+ disabled test-gated workarounds.
+ It supplies the CM4 flash-kernel policy and an offline, hardware-aware
+ piboot-try validation hook; versioned boot assets remain kernel-owned.
+
+Package: uconsole-plymouth-theme
+Version: 0.1.2
+Architecture: all
+Maintainer: blue-1ms <19849833+blue-1ms@users.noreply.github.com>
+Installed-Size: 40
+Depends: fonts-ubuntu, plymouth, plymouth-label, dracut-core | initramfs-tools-core, uconsole-platform (>= 0.1.12)
+Homepage: https://github.com/blue-1ms/uconsole-ubuntu-lts
+Priority: optional
+Section: misc
+Filename: pool/main/u/uconsole-plymouth-theme/uconsole-plymouth-theme_0.1.2_all.deb
+Size: 10012
+SHA256: 19fcb997153b5c0bbc2ae1221b97a880f870ccca43ae3b049830d73328489db5
+SHA1: 814defce9e593fa29d54415b1d0c6ba387438dfe
+MD5sum: a60e200a0d96d826ffa81499a5595b85
+Description: Material Plymouth boot theme for the ClockworkPi uConsole
+ Installs an early KMS Plymouth theme for the CM4 uConsole. The initramfs and
+ dracut hooks include the VC4, V3D, CWU50 panel and OCP8178 backlight drivers,
+ and render the Ubuntu release and target kernel version into each initramfs.
+ Boot assets are installed only through the standard initramfs, flash-kernel
+ and piboot-try flow.
+
