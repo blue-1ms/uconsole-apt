@@ -1,21 +1,29 @@
 {
-  "schema": "uconsole-apt-release-policy-v1",
+  "schema": "uconsole-apt-release-policy-v2",
   "repository": "blue-1ms/uconsole-apt",
   "immutable": true,
   "resume_requires_exact_assets": true,
-  "test_image_release_type": "prerelease",
-  "required_assets": [
-    "uconsole-apt-repository-<release>.tar.zst",
+  "direct_repository": {
+    "branch": "gh-pages",
+    "url": "https://blue-1ms.github.io/uconsole-apt",
+    "suites": ["stable", "candidate"],
+    "candidate_enabled_by_default": false,
+    "signed_inrelease_required": true
+  },
+  "release_tag_patterns": [
+    "<upstream>-candidate.<NN>",
+    "<upstream>-stable",
+    "platform-<version>-stable"
+  ],
+  "required_channel_assets": [
+    "CHANNEL-RECEIPT.json",
     "SHA256SUMS",
-    "SHA256SUMS.asc",
-    "build-manifest.yaml",
-    "repository-receipt.json",
-    "mounted-image-validation-report.json",
-    "TEST-IMAGE.json",
-    "package-set.sha256"
+    "uconsole-archive-keyring.asc",
+    "dists/stable/InRelease",
+    "dists/candidate/InRelease"
   ],
   "forbidden_publish_options": [
     "--clobber",
-    "latest"
+    "floating-latest-tag"
   ]
 }
