@@ -10,6 +10,18 @@
     "candidate_enabled_by_default": false,
     "signed_inrelease_required": true
   },
+  "bootstrap": {
+    "assumes_existing_repository": false,
+    "supported_system": "Ubuntu 26.04 arm64 uConsole CM4 Lite",
+    "key_url": "https://blue-1ms.github.io/uconsole-apt/uconsole-archive-keyring.asc",
+    "key_fingerprint": "79C0DBFA56EDF5B9E0F807CE8E817BEBC6F4DA87",
+    "keyring_path": "/usr/share/keyrings/uconsole-archive-keyring.asc",
+    "source_path": "/etc/apt/sources.list.d/uconsole.sources",
+    "global_trust_forbidden": true,
+    "downloaded_shell_forbidden": true,
+    "platform_installed_before_kernel": true
+  },
+  "documentation_language": "en",
   "release_tag_patterns": [
     "<upstream>-candidate.<NN>",
     "<upstream>-stable",

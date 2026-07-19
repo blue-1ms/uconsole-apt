@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 
 
@@ -33,6 +34,25 @@ def main() -> int:
         raise SystemExit("candidate suite must be disabled by default")
     if direct.get("signed_inrelease_required") is not True:
         raise SystemExit("signed InRelease policy is disabled")
+    bootstrap = policy.get("bootstrap")
+    expected_bootstrap = {
+        "assumes_existing_repository": False,
+        "supported_system": "Ubuntu 26.04 arm64 uConsole CM4 Lite",
+        "key_url": (
+            "https://blue-1ms.github.io/uconsole-apt/"
+            "uconsole-archive-keyring.asc"
+        ),
+        "key_fingerprint": "79C0DBFA56EDF5B9E0F807CE8E817BEBC6F4DA87",
+        "keyring_path": "/usr/share/keyrings/uconsole-archive-keyring.asc",
+        "source_path": "/etc/apt/sources.list.d/uconsole.sources",
+        "global_trust_forbidden": True,
+        "downloaded_shell_forbidden": True,
+        "platform_installed_before_kernel": True,
+    }
+    if bootstrap != expected_bootstrap:
+        raise SystemExit("first-install bootstrap policy is incomplete")
+    if policy.get("documentation_language") != "en":
+        raise SystemExit("documentation language must be English")
     assets = policy.get("required_channel_assets")
     expected = {
         "CHANNEL-RECEIPT.json",
@@ -54,16 +74,65 @@ def main() -> int:
         "floating-latest-tag",
     }:
         raise SystemExit("forbidden publish options are incomplete")
-    for path in (
+    required_docs = (
         ROOT / "README.md",
+        ROOT / "docs/bootstrap.md",
         ROOT / "docs/release-policy.md",
         ROOT / "SECURITY.md",
         ROOT / "LICENSE",
         ROOT / "LICENSE-DOCS",
         ROOT / "NOTICE",
-    ):
+    )
+    for path in required_docs:
         if not path.is_file() or not path.read_text(encoding="utf-8").strip():
             raise SystemExit(f"required documentation is missing: {path.relative_to(ROOT)}")
+    release_notes = sorted((ROOT / "docs/releases").glob("*.md"))
+    if not release_notes:
+        raise SystemExit("tracked GitHub Release notes are missing")
+    cjk = re.compile(r"[\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff]")
+    for path in sorted(ROOT.rglob("*.md")):
+        if ".git" in path.parts:
+            continue
+        if cjk.search(path.read_text(encoding="utf-8")):
+            raise SystemExit(
+                f"user-facing documentation must be English: {path.relative_to(ROOT)}"
+            )
+    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    for required_text in (
+        "## First installation",
+        "set -eu",
+        expected_bootstrap["key_fingerprint"],
+        expected_bootstrap["keyring_path"],
+        expected_bootstrap["source_path"],
+        "Signing-key fingerprint mismatch",
+        "Signed-By:",
+        "Enabled: no",
+        "sudo apt-get install --yes uconsole-platform",
+        "sudo uconsole-kernel-policy-validate",
+    ):
+        if required_text not in readme:
+            raise SystemExit(f"README bootstrap is missing: {required_text}")
+    source_marker = "cat >\"${bootstrap_dir}/uconsole.sources\" <<'EOF'\n"
+    if source_marker not in readme:
+        raise SystemExit("README Deb822 bootstrap block is missing")
+    source_block = readme.split(source_marker, 1)[1].split("\nEOF", 1)[0]
+    expected_source = """Types: deb
+URIs: https://blue-1ms.github.io/uconsole-apt
+Suites: stable
+Components: main
+Architectures: arm64
+Signed-By: /usr/share/keyrings/uconsole-archive-keyring.asc
+Enabled: yes
+
+Types: deb
+URIs: https://blue-1ms.github.io/uconsole-apt
+Suites: candidate
+Components: main
+Architectures: arm64
+Signed-By: /usr/share/keyrings/uconsole-archive-keyring.asc
+Enabled: no"""
+    if source_block != expected_source:
+        raise SystemExit("README Deb822 source differs from the package-owned source")
     print("uConsole APT release policy validation passed")
     return 0
 

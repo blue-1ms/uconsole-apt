@@ -8,13 +8,93 @@ signed binary APT repository published at
 `https://blue-1ms.github.io/uconsole-apt`. GitHub Releases also expose the exact `.deb` files and
 offline repository bundles for auditing and manual recovery.
 
-## Normal updates
+## First installation
 
-`uconsole-platform >= 0.1.17` installs the stable source and its package-owned keyring. On a
-supported uConsole:
+These instructions assume that the machine has never used this repository. They are supported
+only on the Ubuntu 26.04 arm64 uConsole CM4 Lite image.
+
+Install the bootstrap tools and confirm the architecture:
+
+```bash
+sudo apt-get update
+sudo apt-get install --yes ca-certificates curl gpg
+test "$(dpkg --print-architecture)" = arm64
+```
+
+Download the public key, verify its full fingerprint, and install a key and Deb822 source that
+are scoped only to this repository. Run the complete block as one operation:
+
+```bash
+(
+set -eu
+repo_url="https://blue-1ms.github.io/uconsole-apt"
+expected_fingerprint="79C0DBFA56EDF5B9E0F807CE8E817BEBC6F4DA87"
+bootstrap_dir="$(mktemp -d)"
+trap 'rm -rf "${bootstrap_dir}"' EXIT
+export GNUPGHOME="${bootstrap_dir}/gnupg"
+install -d -m 0700 "${GNUPGHOME}"
+curl --fail --silent --show-error --location \
+  "${repo_url}/uconsole-archive-keyring.asc" \
+  --output "${bootstrap_dir}/uconsole-archive-keyring.asc"
+actual_fingerprint="$(
+  gpg --batch --show-keys --with-colons \
+    "${bootstrap_dir}/uconsole-archive-keyring.asc" |
+    awk -F: '$1 == "fpr" { print $10; exit }'
+)"
+if [ "${actual_fingerprint}" != "${expected_fingerprint}" ]; then
+  echo "Signing-key fingerprint mismatch; repository was not configured." >&2
+  exit 1
+fi
+sudo install -o root -g root -m 0644 \
+  "${bootstrap_dir}/uconsole-archive-keyring.asc" \
+  /usr/share/keyrings/uconsole-archive-keyring.asc
+cat >"${bootstrap_dir}/uconsole.sources" <<'EOF'
+Types: deb
+URIs: https://blue-1ms.github.io/uconsole-apt
+Suites: stable
+Components: main
+Architectures: arm64
+Signed-By: /usr/share/keyrings/uconsole-archive-keyring.asc
+Enabled: yes
+
+Types: deb
+URIs: https://blue-1ms.github.io/uconsole-apt
+Suites: candidate
+Components: main
+Architectures: arm64
+Signed-By: /usr/share/keyrings/uconsole-archive-keyring.asc
+Enabled: no
+EOF
+sudo install -o root -g root -m 0644 \
+  "${bootstrap_dir}/uconsole.sources" \
+  /etc/apt/sources.list.d/uconsole.sources
+sudo apt-get update
+)
+```
+
+Install the platform policy first. It adopts the exact bootstrap key and source files, protects
+the uConsole kernel from Ubuntu `linux-*-raspi` meta-packages, and installs the A/B validator.
+Then install the stable kernel and optional Plymouth theme:
+
+```bash
+sudo apt-get install --yes uconsole-platform
+sudo uconsole-kernel-policy-validate
+sudo apt-get install --yes uconsole-kernel uconsole-plymouth-theme
+sudo reboot
+```
+
+Allow the one or two automatic restarts required by `piboot-try`. Do not power off the device
+while the new slot is being validated. See [the bootstrap guide](docs/bootstrap.md) for
+verification and recovery details.
+
+## Updating an existing installation
+
+`uconsole-platform >= 0.1.17` owns the stable source, candidate opt-in, scoped keyring, and kernel
+policy. On a supported uConsole:
 
 ```bash
 sudo apt update
+sudo uconsole-kernel-policy-validate
 sudo apt install uconsole-kernel uconsole-platform uconsole-plymouth-theme
 sudo reboot
 ```
@@ -50,6 +130,7 @@ See [the release policy](docs/release-policy.md) before publishing or installing
 
 ## Security
 
-Do not add the repository with `trusted=yes` and never pipe a release asset into a shell. For
-offline bundles, verify both `SHA256SUMS.asc` and the APT `InRelease` against the keyring already
-trusted by the uConsole image. Report security issues using [SECURITY.md](SECURITY.md).
+Do not add the repository with `trusted=yes`, do not put its key in the global
+`/etc/apt/trusted.gpg.d` trust store, and never pipe downloaded content into a shell. For offline
+bundles, verify both `SHA256SUMS.asc` and the APT `InRelease` against the scoped keyring. Report
+security issues using [SECURITY.md](SECURITY.md).

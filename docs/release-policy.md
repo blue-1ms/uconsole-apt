@@ -47,6 +47,27 @@ GitHub transports bytes but is not the package-signing trust root. Clients must 
 The active repository directory and its one-generation rollback directory must carry the
 uConsole managed marker. Unmanaged paths are never replaced or deleted.
 
+## First-install bootstrap
+
+Public instructions must assume that no uConsole key, source, helper command, or package is
+already installed. The documented bootstrap must:
+
+1. require Ubuntu 26.04 arm64 on the supported uConsole CM4 Lite target;
+2. download the public key without executing downloaded content;
+3. compare the complete signing-key fingerprint before installation;
+4. store the key outside the global APT trusted-key store;
+5. use a Deb822 source with an explicit `Signed-By`;
+6. enable `stable` and explicitly disable `candidate`;
+7. install `uconsole-platform` before the kernel so package-owned policy and A/B validation are
+   active;
+8. run `uconsole-kernel-policy-validate` before installing a kernel update.
+
+The bootstrap key and source content must match the files later owned by `uconsole-platform`, so
+the package can adopt them without changing the trust boundary.
+
+All user-facing repository documentation and GitHub Release notes are maintained in English.
+Release notes are stored under `docs/releases/` and used as the source for GitHub Release bodies.
+
 ## Promotion
 
 Hardware validation and candidate promotion are controlled by the source repository. Promotion
