@@ -110,6 +110,15 @@ def main() -> int:
     for path in required_docs:
         if not path.is_file() or not path.read_text(encoding="utf-8").strip():
             raise SystemExit(f"required documentation is missing: {path.relative_to(ROOT)}")
+    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    for value in (
+        stable["tag"],
+        stable["runtime"],
+        expected_platform["tag"],
+        expected_platform["version"],
+    ):
+        if value not in readme:
+            raise SystemExit(f"README does not identify the current stable release: {value}")
     release_notes = sorted((ROOT / "docs/releases").glob("*.md"))
     if not release_notes:
         raise SystemExit("tracked GitHub Release notes are missing")

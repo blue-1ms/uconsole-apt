@@ -161,7 +161,8 @@ changing APT sources or preferences.
 The current stable kernel is
 [`7.1.4-stable`](https://github.com/blue-1ms/uconsole-apt/releases/tag/7.1.4-stable),
 promoted from the exact hardware-passed `7.1.4-candidate.04` bytes. Its individual `.deb`
-assets are byte-identical to the signed stable APT channel. `7.1.3-1003-uconsole` remains the
+assets install runtime `7.1.4-1001-uconsole` and are byte-identical to the signed stable APT
+channel. `7.1.3-1003-uconsole` remains the
 sole N-1 fallback; the historical `0.1.0-candidate.16` release remains immutable.
 
 The matching platform release is

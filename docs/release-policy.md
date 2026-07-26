@@ -81,3 +81,8 @@ boot assets are always installed through initramfs, `flash-kernel`, and `piboot-
 
 The current promotion is `7.1.4-candidate.04` to `7.1.4-stable`; its offline bundle SHA-256 is
 `b12738c7c0ae49c625598adf7e62b961b966d59d085f0c90c05cdef40525eb43`.
+
+Kernel closeout is incomplete until the matching versioned platform tag and Release exist and
+all release-repository README files identify the new kernel, runtime ABI, platform version and
+fallback. Those README commits, all Release URLs and the exact platform package SHA are part of
+the cross-repository publication receipt; they are not optional follow-up documentation.
