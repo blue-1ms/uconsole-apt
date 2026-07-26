@@ -131,9 +131,9 @@ verification, and recovery details.
 
 ## Updating an existing installation
 
-`uconsole-platform >= 0.1.20` owns the stable source, candidate opt-in, scoped keyring, dynamic
-kernel receipt validator, and kernel
-policy. On a supported uConsole:
+The installed `uconsole-platform` owns the stable source, candidate opt-in, scoped keyring,
+dynamic kernel receipt validator, and kernel policy. Each kernel meta-package declares only its
+minimum compatible platform version. On a supported uConsole:
 
 ```bash
 sudo apt update
@@ -165,11 +165,29 @@ assets install runtime `7.1.4-1001-uconsole` and are byte-identical to the signe
 channel. `7.1.3-1003-uconsole` remains the
 sole N-1 fallback; the historical `0.1.0-candidate.16` release remains immutable.
 
-The matching platform release is
-[`platform-0.1.20-stable`](https://github.com/blue-1ms/uconsole-apt/releases/tag/platform-0.1.20-stable).
-It provides the receipt-driven A/B validator, FAT diagnostics, complete overlay seed, audio
-routing, APT health check, exact boot-owner protection, and upgradeable Raspberry Pi/Broadcom
-firmware policy required by the 7.1.4 release.
+The same kernel stable transaction contains the exact tested `uconsole-platform 0.1.20` and
+`uconsole-plymouth-theme 0.1.2` packages. The separately published
+[`platform-0.1.20-stable`](https://github.com/blue-1ms/uconsole-apt/releases/tag/platform-0.1.20-stable)
+is an already immutable historical additional Release; future normal kernel closeouts do not
+require a second platform Release. A separate `platform-<semver>-stable` tag is used only when
+the kernel is unchanged and the platform is released independently.
+
+APT may retain or install a platform newer than the kernel's minimum compatible version. A
+kernel transaction never requires an exact platform version and never downgrades a newer
+compatible platform.
+
+## Validation and closeout
+
+- **Fast CI** validates source policy, metadata and documentation.
+- **Artifact validation** deeply validates each immutable package payload once and reuses only a
+  detached-signature-verified, content-addressed receipt for identical bytes.
+- **Hardware stable gate** covers A/B try/promote, FAT diagnostics, CM4 hardware and the sole
+  adjacent N-1 fallback.
+- **Stable closeout** alone checks README updates, GitHub Releases, immutable tags, retention and
+  the final publication receipt.
+
+Kernel-only releases never run image compose, mounted-image, GNOME or first-boot validation.
+Platform-only releases do not repeat unchanged kernel modules, headers or vermagic checks.
 
 ## Release status
 

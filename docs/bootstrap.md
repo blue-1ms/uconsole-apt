@@ -49,6 +49,10 @@ The stable uConsole packages must have an installable version from
 selected as an upgrade candidate. Raspberry Pi firmware packages remain eligible for normal
 Ubuntu updates.
 
+`uconsole-kernel` depends on a minimum compatible `uconsole-platform`; it does not require the
+device to equal the release's tested version. If APT policy proposes downgrading an already newer
+compatible platform, stop and run `sudo uconsole-apt-health` rather than accepting the change.
+
 The candidate suite is present in the Deb822 file but disabled. Do not enable it on a daily-use
 device unless a specific candidate test procedure says to do so.
 

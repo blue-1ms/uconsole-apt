@@ -1,5 +1,5 @@
 {
-  "schema": "uconsole-apt-release-policy-v2",
+  "schema": "uconsole-apt-release-policy-v3",
   "repository": "blue-1ms/uconsole-apt",
   "immutable": true,
   "resume_requires_exact_assets": true,
@@ -30,19 +30,51 @@
     "candidate": "7.1.4-candidate.04",
     "runtime": "7.1.4-1001-uconsole",
     "kernel_package_version": "7.1.4-1001.1.uconsole.1",
-    "platform_package_version": "0.1.20",
-    "bundle_sha256": "b12738c7c0ae49c625598adf7e62b961b966d59d085f0c90c05cdef40525eb43"
+    "tested_platform_version": "0.1.20",
+    "minimum_platform_version": "0.1.20",
+    "bundle_sha256": "b12738c7c0ae49c625598adf7e62b961b966d59d085f0c90c05cdef40525eb43",
+    "package_sha256": {
+      "linux-image": "d14c7ea7faa575639310dc62cf853c0e4baa677820f1efe7f06abb391e30df45",
+      "linux-modules": "465c08617706c8954dfc29bff9c4415bb5f29d177d76413b2fd6990b4164556c",
+      "linux-headers": "6f5e7808868cb4fd164c3eee0343fae22b7861a1e2de46354327db4a3999b15f",
+      "linux-buildinfo": "8165334ad42c8130d7062303419e5cd4db804682c785daf824792ebebeb74d50",
+      "uconsole-kernel": "606c3d34cd5c449901588a567dc2622e12c8580c56373181d65c7c929a57d0eb",
+      "uconsole-platform": "861323a9a285f54efff9c9478e57fef56ee98fcc86defb0d05025b4648aa2eda",
+      "uconsole-plymouth-theme": "19fcb997153b5c0bbc2ae1221b97a880f870ccca43ae3b049830d73328489db5"
+    }
   },
-  "current_platform_stable": {
-    "tag": "platform-0.1.20-stable",
-    "version": "0.1.20",
-    "sha256": "861323a9a285f54efff9c9478e57fef56ee98fcc86defb0d05025b4648aa2eda",
-    "matching_kernel_tag": "7.1.4-stable"
+  "release_transactions": {
+    "kernel_includes_exact_tested_platform": true,
+    "kernel_includes_plymouth_when_applicable": true,
+    "kernel_requires_separate_platform_release": false,
+    "platform_only_release_allowed_when_kernel_unchanged": true,
+    "platform_dependency": "greater-than-or-equal-no-downgrade"
   },
+  "platform_versioning": {
+    "scheme": "semver",
+    "derived_from_kernel": false,
+    "major": "incompatible-boot-ab-control-change",
+    "minor": "compatible-feature-or-migration",
+    "patch": "compatible-bug-fix"
+  },
+  "validation_layers": {
+    "fast_ci": "source-policy-only",
+    "artifact": "signed-content-addressed-receipt-reuse",
+    "hardware": "ab-fat-cm4-and-single-n-minus-1",
+    "stable_closeout": "readme-release-tag-retention-publication"
+  },
+  "published_platform_releases": [
+    {
+      "tag": "platform-0.1.20-stable",
+      "version": "0.1.20",
+      "sha256": "861323a9a285f54efff9c9478e57fef56ee98fcc86defb0d05025b4648aa2eda",
+      "context": "historical-additional-release"
+    }
+  ],
   "release_tag_patterns": [
     "<upstream>-candidate.<NN>",
     "<upstream>-stable",
-    "platform-<version>-stable"
+    "platform-<semver>-stable"
   ],
   "required_channel_assets": [
     "CHANNEL-RECEIPT.json",

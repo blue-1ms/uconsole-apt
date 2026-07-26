@@ -9,11 +9,20 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
+SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
+SEMVER_RE = re.compile(r"^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$")
+
+
+def semver(value: object) -> tuple[int, int, int]:
+    match = SEMVER_RE.fullmatch(str(value))
+    if match is None:
+        raise SystemExit(f"invalid platform SemVer: {value!r}")
+    return tuple(int(match.group(index)) for index in (1, 2, 3))
 
 
 def main() -> int:
     policy = json.loads((ROOT / "release-policy.json").read_text(encoding="utf-8"))
-    if policy.get("schema") != "uconsole-apt-release-policy-v2":
+    if policy.get("schema") != "uconsole-apt-release-policy-v3":
         raise SystemExit("unsupported release policy schema")
     if policy.get("repository") != "blue-1ms/uconsole-apt":
         raise SystemExit("release policy repository mismatch")
@@ -22,24 +31,63 @@ def main() -> int:
     if policy.get("resume_requires_exact_assets") is not True:
         raise SystemExit("draft resume must require the exact validated asset set")
     stable = policy.get("current_stable", {})
-    expected_stable = {
-        "tag": "7.1.4-stable",
-        "candidate": "7.1.4-candidate.04",
-        "runtime": "7.1.4-1001-uconsole",
-        "kernel_package_version": "7.1.4-1001.1.uconsole.1",
-        "platform_package_version": "0.1.20",
-        "bundle_sha256": "b12738c7c0ae49c625598adf7e62b961b966d59d085f0c90c05cdef40525eb43",
+    required_stable = {
+        "tag",
+        "candidate",
+        "runtime",
+        "kernel_package_version",
+        "tested_platform_version",
+        "minimum_platform_version",
+        "bundle_sha256",
+        "package_sha256",
     }
-    if stable != expected_stable:
+    if not isinstance(stable, dict) or set(stable) != required_stable:
         raise SystemExit("current stable identity is incomplete or inconsistent")
-    expected_platform = {
-        "tag": "platform-0.1.20-stable",
-        "version": "0.1.20",
-        "sha256": "861323a9a285f54efff9c9478e57fef56ee98fcc86defb0d05025b4648aa2eda",
-        "matching_kernel_tag": "7.1.4-stable",
+    if not re.fullmatch(r"[0-9][0-9A-Za-z.+-]*-stable", stable["tag"]):
+        raise SystemExit("current stable tag is invalid")
+    if not re.fullmatch(r"[0-9][0-9A-Za-z.+-]*-candidate\.[0-9]+", stable["candidate"]):
+        raise SystemExit("current candidate tag is invalid")
+    if not re.fullmatch(r"[0-9][0-9A-Za-z.+-]*-uconsole", stable["runtime"]):
+        raise SystemExit("current runtime is not a uConsole flavour")
+    if semver(stable["tested_platform_version"]) < semver(stable["minimum_platform_version"]):
+        raise SystemExit("tested platform is below the kernel minimum")
+    if not SHA256_RE.fullmatch(stable["bundle_sha256"]):
+        raise SystemExit("current stable bundle SHA-256 is invalid")
+    package_sha = stable["package_sha256"]
+    expected_roles = {
+        "linux-image",
+        "linux-modules",
+        "linux-headers",
+        "linux-buildinfo",
+        "uconsole-kernel",
+        "uconsole-platform",
+        "uconsole-plymouth-theme",
     }
-    if policy.get("current_platform_stable") != expected_platform:
-        raise SystemExit("current stable platform identity is incomplete or inconsistent")
+    if not isinstance(package_sha, dict) or set(package_sha) != expected_roles or any(
+        not SHA256_RE.fullmatch(str(value)) for value in package_sha.values()
+    ):
+        raise SystemExit("kernel stable transaction package SHA set is incomplete")
+    transaction = policy.get("release_transactions", {})
+    expected_transaction = {
+        "kernel_includes_exact_tested_platform": True,
+        "kernel_includes_plymouth_when_applicable": True,
+        "kernel_requires_separate_platform_release": False,
+        "platform_only_release_allowed_when_kernel_unchanged": True,
+        "platform_dependency": "greater-than-or-equal-no-downgrade",
+    }
+    if transaction != expected_transaction:
+        raise SystemExit("kernel/platform stable transaction policy is incomplete")
+    versioning = policy.get("platform_versioning", {})
+    if versioning.get("scheme") != "semver" or versioning.get("derived_from_kernel") is not False:
+        raise SystemExit("platform versioning must be independent SemVer")
+    expected_layers = {
+        "fast_ci": "source-policy-only",
+        "artifact": "signed-content-addressed-receipt-reuse",
+        "hardware": "ab-fat-cm4-and-single-n-minus-1",
+        "stable_closeout": "readme-release-tag-retention-publication",
+    }
+    if policy.get("validation_layers") != expected_layers:
+        raise SystemExit("validation layers are incomplete")
     direct = policy.get("direct_repository")
     if not isinstance(direct, dict):
         raise SystemExit("direct repository policy is missing")
@@ -88,7 +136,7 @@ def main() -> int:
     if policy.get("release_tag_patterns") != [
         "<upstream>-candidate.<NN>",
         "<upstream>-stable",
-        "platform-<version>-stable",
+        "platform-<semver>-stable",
     ]:
         raise SystemExit("release tag patterns are incomplete")
     if set(policy.get("forbidden_publish_options", [])) != {
@@ -96,7 +144,7 @@ def main() -> int:
         "floating-latest-tag",
     }:
         raise SystemExit("forbidden publish options are incomplete")
-    required_docs = (
+    required_docs = [
         ROOT / "README.md",
         ROOT / "docs/bootstrap.md",
         ROOT / "docs/release-policy.md",
@@ -104,19 +152,28 @@ def main() -> int:
         ROOT / "LICENSE",
         ROOT / "LICENSE-DOCS",
         ROOT / "NOTICE",
-        ROOT / "docs/releases/7.1.4-stable.md",
-        ROOT / "docs/releases/platform-0.1.20-stable.md",
-    )
+        ROOT / "docs/releases" / f"{stable['tag']}.md",
+    ]
+    platform_releases = policy.get("published_platform_releases", [])
+    if not isinstance(platform_releases, list):
+        raise SystemExit("published platform release data must be a list")
+    for release in platform_releases:
+        if not isinstance(release, dict):
+            raise SystemExit("published platform release entry is invalid")
+        version = release.get("version")
+        if release.get("tag") != f"platform-{version}-stable" or not SHA256_RE.fullmatch(
+            str(release.get("sha256", ""))
+        ):
+            raise SystemExit("published platform release identity is invalid")
+        semver(version)
+        required_docs.append(ROOT / "docs/releases" / f"{release['tag']}.md")
     for path in required_docs:
         if not path.is_file() or not path.read_text(encoding="utf-8").strip():
             raise SystemExit(f"required documentation is missing: {path.relative_to(ROOT)}")
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
-    for value in (
-        stable["tag"],
-        stable["runtime"],
-        expected_platform["tag"],
-        expected_platform["version"],
-    ):
+    readme_identities = [stable["tag"], stable["runtime"], stable["tested_platform_version"]]
+    readme_identities.extend(release["tag"] for release in platform_releases)
+    for value in readme_identities:
         if value not in readme:
             raise SystemExit(f"README does not identify the current stable release: {value}")
     release_notes = sorted((ROOT / "docs/releases").glob("*.md"))

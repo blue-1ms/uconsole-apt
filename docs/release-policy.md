@@ -9,9 +9,11 @@ The public package channel has two coordinated surfaces:
   offline repository bundle and its evidence.
 
 Every Pages publication includes `CHANNEL-RECEIPT.json`, `SHA256SUMS`, the public keyring,
-signed `InRelease` files, package indices, and the exact package pool. A kernel release includes
-the image, modules, headers, buildinfo, and meta-package `.deb` files. A platform release includes
-the platform and Plymouth `.deb` files.
+signed `InRelease` files, package indices, and the exact package pool. A normal kernel stable
+transaction includes the image, modules, headers, buildinfo and meta-package `.deb` files, the
+exact tested platform package, and Plymouth when applicable. These remain separate Debian
+packages. A platform-only release includes the changed platform package and optional Plymouth
+without republishing or revalidating unchanged kernel payloads.
 
 ## Immutability
 
@@ -33,7 +35,13 @@ the platform and Plymouth `.deb` files.
 - Kernel candidate: `<upstream>-candidate.<NN>`.
 - Kernel promotion: `<upstream>-stable`, pointing to the exact candidate bytes.
 - Same-upstream ABI update: `<upstream>-<abi-sequence>-candidate.<NN>` and matching stable tag.
-- Platform release: `platform-<version>-stable`.
+- Platform-only release: `platform-<semver>-stable`, only when kernel bytes are unchanged.
+
+`uconsole-platform` uses independent monotonic SemVer: MAJOR is an incompatible boot/A-B/control
+change, MINOR is a compatible feature or migration, and PATCH is a compatible bug fix. Kernel
+metadata records the exact tested platform package SHA and a minimum compatible platform. The
+meta package uses `uconsole-platform (>= minimum)`; APT must preserve a newer compatible platform
+and must never downgrade it to the tested version.
 
 The repository retains the latest hardware-passed kernel and the adjacent N-1 package set during
 rollout. N-2 is removed only after promote, controlled fallback, and restoration succeed.
@@ -82,7 +90,20 @@ boot assets are always installed through initramfs, `flash-kernel`, and `piboot-
 The current promotion is `7.1.4-candidate.04` to `7.1.4-stable`; its offline bundle SHA-256 is
 `b12738c7c0ae49c625598adf7e62b961b966d59d085f0c90c05cdef40525eb43`.
 
-Kernel closeout is incomplete until the matching versioned platform tag and Release exist and
-all release-repository README files identify the new kernel, runtime ABI, platform version and
-fallback. Those README commits, all Release URLs and the exact platform package SHA are part of
-the cross-repository publication receipt; they are not optional follow-up documentation.
+Kernel closeout is incomplete until all release-repository README files identify the new kernel,
+runtime ABI, tested/minimum platform and fallback. Those README commits, all Release URLs, exact
+package SHA set and signed validation receipts are part of the cross-repository publication
+receipt. A second platform tag/Release is not a normal kernel closeout requirement. It is required
+only for a platform-only release with unchanged kernel bytes.
+
+## Validation layers
+
+Fast CI covers manifest/hash/documentation/package metadata/static policy. Artifact validation
+checks immutable bytes once: kernel identity/ownership, modules/depmod/vermagic, headers, DT,
+initramfs and signed APT; platform payload validation covers ownership and maintainer/A-B hooks.
+An identical package set may reuse only its signed content-addressed receipt.
+
+The hardware stable gate separately covers A/B try/promote, FAT mailbox, display/backlight/DRM,
+input/audio/PMIC, Wi-Fi/BT/basic USB and the sole adjacent N-1 fallback. README, Release, tag,
+retention and publication checks run only during stable closeout. Kernel-only publication never
+runs image compose, mounted-image, GNOME or first-boot validation.
