@@ -32,6 +32,14 @@ def main() -> int:
     }
     if stable != expected_stable:
         raise SystemExit("current stable identity is incomplete or inconsistent")
+    expected_platform = {
+        "tag": "platform-0.1.20-stable",
+        "version": "0.1.20",
+        "sha256": "861323a9a285f54efff9c9478e57fef56ee98fcc86defb0d05025b4648aa2eda",
+        "matching_kernel_tag": "7.1.4-stable",
+    }
+    if policy.get("current_platform_stable") != expected_platform:
+        raise SystemExit("current stable platform identity is incomplete or inconsistent")
     direct = policy.get("direct_repository")
     if not isinstance(direct, dict):
         raise SystemExit("direct repository policy is missing")
@@ -97,6 +105,7 @@ def main() -> int:
         ROOT / "LICENSE-DOCS",
         ROOT / "NOTICE",
         ROOT / "docs/releases/7.1.4-stable.md",
+        ROOT / "docs/releases/platform-0.1.20-stable.md",
     )
     for path in required_docs:
         if not path.is_file() or not path.read_text(encoding="utf-8").strip():

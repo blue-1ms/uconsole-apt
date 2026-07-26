@@ -33,6 +33,12 @@
     "platform_package_version": "0.1.20",
     "bundle_sha256": "b12738c7c0ae49c625598adf7e62b961b966d59d085f0c90c05cdef40525eb43"
   },
+  "current_platform_stable": {
+    "tag": "platform-0.1.20-stable",
+    "version": "0.1.20",
+    "sha256": "861323a9a285f54efff9c9478e57fef56ee98fcc86defb0d05025b4648aa2eda",
+    "matching_kernel_tag": "7.1.4-stable"
+  },
   "release_tag_patterns": [
     "<upstream>-candidate.<NN>",
     "<upstream>-stable",

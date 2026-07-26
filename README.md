@@ -164,6 +164,12 @@ promoted from the exact hardware-passed `7.1.4-candidate.04` bytes. Its individu
 assets are byte-identical to the signed stable APT channel. `7.1.3-1003-uconsole` remains the
 sole N-1 fallback; the historical `0.1.0-candidate.16` release remains immutable.
 
+The matching platform release is
+[`platform-0.1.20-stable`](https://github.com/blue-1ms/uconsole-apt/releases/tag/platform-0.1.20-stable).
+It provides the receipt-driven A/B validator, FAT diagnostics, complete overlay seed, audio
+routing, APT health check, exact boot-owner protection, and upgradeable Raspberry Pi/Broadcom
+firmware policy required by the 7.1.4 release.
+
 ## Release status
 
 - `candidate`: signed immutable bytes awaiting the complete CM4 hardware checklist.
