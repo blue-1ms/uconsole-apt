@@ -1,109 +1,109 @@
-Package: linux-buildinfo-7.1.3-1003-uconsole
+Package: linux-buildinfo-7.1.4-1001-uconsole
 Source: linux-uconsole
-Version: 7.1.3-1003.1.uconsole.1
+Version: 7.1.4-1001.1.uconsole.1
 Architecture: arm64
 Maintainer: blue-1ms <19849833+blue-1ms@users.noreply.github.com>
-Installed-Size: 2123
+Installed-Size: 2097
 Homepage: https://github.com/blue-1ms/uconsole-ubuntu-lts
 Priority: optional
 Section: kernel
-Filename: pool/main/l/linux-uconsole/linux-buildinfo-7.1.3-1003-uconsole_7.1.3-1003.1.uconsole.1_arm64.deb
-Size: 345328
-SHA256: 3978036a1dd68b86a8a821623d06e31fe1ed135647cdab1f8665e87b2c14fa28
-SHA1: 98daf8bbf36ea4c987487914609f55f4474a6a5b
-MD5sum: e5f23e791f3b89d7f0115501f2949757
+Filename: pool/main/l/linux-uconsole/linux-buildinfo-7.1.4-1001-uconsole_7.1.4-1001.1.uconsole.1_arm64.deb
+Size: 341438
+SHA256: 8165334ad42c8130d7062303419e5cd4db804682c785daf824792ebebeb74d50
+SHA1: f13057b62a850894d3620722ca348a8338e0a4e2
+MD5sum: 3214ced7002c5cc827982eab604eeb0f
 Description: Build information for the uConsole kernel
  Final configuration, symbol versions, compiler identity, and source commit.
 
-Package: linux-headers-7.1.3-1003-uconsole
+Package: linux-headers-7.1.4-1001-uconsole
 Source: linux-uconsole
-Version: 7.1.3-1003.1.uconsole.1
+Version: 7.1.4-1001.1.uconsole.1
 Architecture: arm64
 Maintainer: blue-1ms <19849833+blue-1ms@users.noreply.github.com>
-Installed-Size: 275378
+Installed-Size: 275404
 Depends: make
 Homepage: https://github.com/blue-1ms/uconsole-ubuntu-lts
 Priority: optional
 Section: kernel
-Filename: pool/main/l/linux-uconsole/linux-headers-7.1.3-1003-uconsole_7.1.3-1003.1.uconsole.1_arm64.deb
-Size: 57803894
-SHA256: 0e2e93cb91628d0f9c724a9e0dfc24d6b36858de418676382b06f7466e30d355
-SHA1: cbec0dec4ebb90003203507c0c2bc33d9830e253
-MD5sum: a31cee5686a1ad78e7c7f920d38875da
+Filename: pool/main/l/linux-uconsole/linux-headers-7.1.4-1001-uconsole_7.1.4-1001.1.uconsole.1_arm64.deb
+Size: 57852186
+SHA256: 6f5e7808868cb4fd164c3eee0343fae22b7861a1e2de46354327db4a3999b15f
+SHA1: c0319439290c1fa8bb1d85c73d60f7ef62fb10de
+MD5sum: 6c5a96e3c93e755cf19c61f6e0c18bb5
 Description: Linux kernel headers for ClockworkPi uConsole CM4 Lite
  Prepared headers and build metadata for external arm64 kernel modules.
 
-Package: linux-image-7.1.3-1003-uconsole
+Package: linux-image-7.1.4-1001-uconsole
 Source: linux-uconsole
-Version: 7.1.3-1003.1.uconsole.1
+Version: 7.1.4-1001.1.uconsole.1
 Architecture: arm64
 Maintainer: blue-1ms <19849833+blue-1ms@users.noreply.github.com>
-Installed-Size: 20273
-Depends: initramfs-tools | linux-initramfs-tool, kmod, linux-base, linux-modules-7.1.3-1003-uconsole (= 7.1.3-1003.1.uconsole.1), uconsole-platform (>= 0.1.15)
+Installed-Size: 20276
+Depends: initramfs-tools | linux-initramfs-tool, kmod, linux-base, linux-modules-7.1.4-1001-uconsole (= 7.1.4-1001.1.uconsole.1), uconsole-platform (>= 0.1.17)
 Recommends: piboot-try | flash-kernel
 Homepage: https://github.com/blue-1ms/uconsole-ubuntu-lts
 Priority: optional
 Section: kernel
-Filename: pool/main/l/linux-uconsole/linux-image-7.1.3-1003-uconsole_7.1.3-1003.1.uconsole.1_arm64.deb
-Size: 15426814
-SHA256: ad5dead13ca23e21af7e21eec2695fb98cf548903168ffb2d70dc1c533e35896
-SHA1: b41b13c307f22bc1af31190031ffcbbec61f976a
-MD5sum: fe054f6bc9b382f2d5d7e6f7decb249e
+Filename: pool/main/l/linux-uconsole/linux-image-7.1.4-1001-uconsole_7.1.4-1001.1.uconsole.1_arm64.deb
+Size: 15430238
+SHA256: d14c7ea7faa575639310dc62cf853c0e4baa677820f1efe7f06abb391e30df45
+SHA1: dd430a848c27b4e50c202908fe10b9a097043567
+MD5sum: 0562f2a21fc0e171ad7ad38eb886a148
 Description: Linux kernel image for ClockworkPi uConsole CM4 Lite
  Versioned kernel image, CM4 device tree, and reviewed uConsole overlays.
  Boot firmware updates are delegated to the installed kernel hook provider.
 
-Package: linux-modules-7.1.3-1003-uconsole
+Package: linux-modules-7.1.4-1001-uconsole
 Source: linux-uconsole
-Version: 7.1.3-1003.1.uconsole.1
+Version: 7.1.4-1001.1.uconsole.1
 Architecture: arm64
 Maintainer: blue-1ms <19849833+blue-1ms@users.noreply.github.com>
-Installed-Size: 414050
+Installed-Size: 414121
 Depends: kmod
 Homepage: https://github.com/blue-1ms/uconsole-ubuntu-lts
 Priority: optional
 Section: kernel
-Filename: pool/main/l/linux-uconsole/linux-modules-7.1.3-1003-uconsole_7.1.3-1003.1.uconsole.1_arm64.deb
-Size: 70031398
-SHA256: c78e6abae148ebddd89be7a56e1424323dae5479d7631219e2c0e74e22420dd0
-SHA1: 6616c05b5a3c966e4918fff763ae2ca75565123e
-MD5sum: 5bf05afc232bdfb8f9192b3e2d6de2e9
+Filename: pool/main/l/linux-uconsole/linux-modules-7.1.4-1001-uconsole_7.1.4-1001.1.uconsole.1_arm64.deb
+Size: 70046800
+SHA256: 465c08617706c8954dfc29bff9c4415bb5f29d177d76413b2fd6990b4164556c
+SHA1: 6cf96f482a4d115833ef992e3384921f33a64e84
+MD5sum: 9a32c776287f0531d73ca043b08ed348
 Description: Linux kernel modules for ClockworkPi uConsole CM4 Lite
  Versioned modules and dependency metadata for the uConsole kernel.
 
 Package: uconsole-kernel
 Source: linux-uconsole
-Version: 7.1.3-1003.1.uconsole.1
+Version: 7.1.4-1001.1.uconsole.1
 Architecture: arm64
 Maintainer: blue-1ms <19849833+blue-1ms@users.noreply.github.com>
 Installed-Size: 8
-Depends: linux-image-7.1.3-1003-uconsole (= 7.1.3-1003.1.uconsole.1), linux-modules-7.1.3-1003-uconsole (= 7.1.3-1003.1.uconsole.1), linux-headers-7.1.3-1003-uconsole (= 7.1.3-1003.1.uconsole.1), linux-buildinfo-7.1.3-1003-uconsole (= 7.1.3-1003.1.uconsole.1), uconsole-platform (>= 0.1.15)
+Depends: linux-image-7.1.4-1001-uconsole (= 7.1.4-1001.1.uconsole.1), linux-modules-7.1.4-1001-uconsole (= 7.1.4-1001.1.uconsole.1), linux-headers-7.1.4-1001-uconsole (= 7.1.4-1001.1.uconsole.1), linux-buildinfo-7.1.4-1001-uconsole (= 7.1.4-1001.1.uconsole.1), uconsole-platform (>= 0.1.17)
 Homepage: https://github.com/blue-1ms/uconsole-ubuntu-lts
 Priority: optional
 Section: kernel
-Filename: pool/main/l/linux-uconsole/uconsole-kernel_7.1.3-1003.1.uconsole.1_arm64.deb
-Size: 1522
-SHA256: d4d8714885f64913c63e4a2dc077d40442c51b0bb8c48730fc36593e2a6db191
-SHA1: 8dd424a46c6764524c9cf947620901a1912ba4c7
-MD5sum: bc49b5ccf8ebfe69ae1b22f597bcffb3
+Filename: pool/main/l/linux-uconsole/uconsole-kernel_7.1.4-1001.1.uconsole.1_arm64.deb
+Size: 1520
+SHA256: 606c3d34cd5c449901588a567dc2622e12c8580c56373181d65c7c929a57d0eb
+SHA1: 40ea2217610a79c4572f447548f8b9c8cdf2939c
+MD5sum: 593075fcd604bb85f4d256ec130f2028
 Description: Complete uConsole kernel package set
  Pulls in the versioned image, modules, headers, and build information.
 
 Package: uconsole-platform
 Source: linux-uconsole-userspace
-Version: 0.1.17
+Version: 0.1.20
 Architecture: arm64
 Maintainer: blue-1ms <19849833+blue-1ms@users.noreply.github.com>
-Installed-Size: 210
-Depends: accountsservice, adduser, ca-certificates, gnupg, gpgv, linux-firmware-broadcom-wireless (= 20260319.git217ca6e4-0ubuntu1), linux-firmware-raspi (= 14-0ubuntu1), piboot-try, python3, raspi-utils-core, rpi-eeprom, systemd, tar, zstd
+Installed-Size: 228
+Depends: accountsservice, adduser, ca-certificates, gnupg, gpgv, linux-firmware-broadcom-wireless (>= 20260319.git217ca6e4-0ubuntu1), linux-firmware-raspi (>= 14-0ubuntu1), piboot-try, python3, raspi-utils-core, rpi-eeprom, systemd, tar, zstd
 Homepage: https://github.com/blue-1ms/uconsole-ubuntu-lts
 Priority: optional
 Section: admin
-Filename: pool/main/l/linux-uconsole-userspace/uconsole-platform_0.1.17_arm64.deb
-Size: 40018
-SHA256: 2548b0c087de964a257e663fb433089df24cc743ee2bec04e47f43aad2615a79
-SHA1: da0db7c1299be60fe4fac657206db7656f7f4b22
-MD5sum: 6a22678661033896f9078c14329f17c4
+Filename: pool/main/l/linux-uconsole-userspace/uconsole-platform_0.1.20_arm64.deb
+Size: 43868
+SHA256: 861323a9a285f54efff9c9478e57fef56ee98fcc86defb0d05025b4648aa2eda
+SHA1: 1342ecccffbb270c31cfa7945a9367d031fda39e
+MD5sum: 6e72d186c65d66543b3e6aff65cc926e
 Description: uConsole CM4 platform userspace integration
  Installs non-kernel platform helpers, generic device access setup, the
  post-OEM first-administrator detector, speaker/headphone GPIO routing, and

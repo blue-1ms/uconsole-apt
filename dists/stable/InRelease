@@ -5,32 +5,32 @@ Origin: blue-1ms-uconsole
 Label: uConsole Ubuntu
 Suite: stable
 Codename: stable
-Date: Sun, 19 Jul 2026 04:35:53 UTC
+Date: Sun, 26 Jul 2026 03:31:29 UTC
 Architectures: arm64
 Components: main
 Description: Signed uConsole CM4 Lite kernel and platform packages
 MD5Sum:
- 7efe8b03128ff28e56b5ebf6b909ae5f 6302 main/binary-arm64/Packages
- f2b68a196de70c87cab9b5aa4f024956 2113 main/binary-arm64/Packages.gz
+ 5cdb9e9064b7379631661c3260977c2a 6304 main/binary-arm64/Packages
+ 0a8790c4cf6812b2ecdda48f8d73f1d0 2115 main/binary-arm64/Packages.gz
  eb0ab8d94ebf69d704cab62bc4480c0f 168 main/binary-arm64/Release
- 1018e3891fe058a23fed6021ada9a68f 3285994 main/Contents-arm64
- 2ad101546ce9c4db69cb5dc79805114b 175349 main/Contents-arm64.gz
+ 8db6d442f26449cfd7d82ba3d8c1d3aa 3286210 main/Contents-arm64
+ ed3486d74c54f14f65564cc3c9e88ccf 175389 main/Contents-arm64.gz
 SHA1:
- 97ceb0fd581e9a49ef01f875a737b57401526067 6302 main/binary-arm64/Packages
- 59aca07c750a72c297da15d87bdd83c94f8fff17 2113 main/binary-arm64/Packages.gz
+ 15dc28ddaceeafae1427e3d4e011526fbaca48d4 6304 main/binary-arm64/Packages
+ 6bb2965f15f5370316ed553d82fb3f7ee6b44172 2115 main/binary-arm64/Packages.gz
  2eed32fb406e09e499f5e133c28e4d297c3f7938 168 main/binary-arm64/Release
- afef978b305f66542ac1f0a694f57c48340f0a01 3285994 main/Contents-arm64
- 179cadcb0138bfa394334c737880ce1f5c4b1880 175349 main/Contents-arm64.gz
+ db328eac42783f2b21f25032c16b47526f18469e 3286210 main/Contents-arm64
+ b20d6d9753dabdbeb5125d3f4fbaf385cbeccd7d 175389 main/Contents-arm64.gz
 SHA256:
- fbaf385aeced767e1e9026fc1071ecb158b1e86e1faa3369e8d4e51a3cdbd902 6302 main/binary-arm64/Packages
- 7d493c716cb65b7cd2c198e449f9aabb9d06fe7968f0b533b44d1ccc36ad0f10 2113 main/binary-arm64/Packages.gz
+ 7e97ac5a212656b8c8c9ad5b61e01bf6a371a36dc7684431572761b70d35cbfc 6304 main/binary-arm64/Packages
+ ec873d4b62c44dfd0361e2e2f40ee40b6fa4b36eaa237d154818845bc9fe6a75 2115 main/binary-arm64/Packages.gz
  b8d4dd541bf96ac3ab4390a0e4e644664d7d50a0e22ab2544bbb2811f5c860dd 168 main/binary-arm64/Release
- d40c899e7a44cb9f396c98b87737433332e359457ceb6db220a1f34c0c4cb95d 3285994 main/Contents-arm64
- 157b5a1f69db733d288c88864202ebd7ef9628d301b0612d13fba14da1955ef7 175349 main/Contents-arm64.gz
+ 4e57180f91d7023058cdc755eb527bf9d02043f4174179bc3860ba7e16e5bfc5 3286210 main/Contents-arm64
+ f94003981db2f14b731480497d54aacbbaf3cb359adb652e4696dc114231110b 175389 main/Contents-arm64.gz
 -----BEGIN PGP SIGNATURE-----
 
-iHUEARYKAB0WIQR5wNv6Vu31ueD4B86OgXvrxvTahwUCalxUKQAKCRCOgXvrxvTa
-h+oAAQCXlDxeoea8/0vX8TUe2ou4bgPDS7qx4lEPlnm4D8mJ7QD/UQWXHcImIV1o
-e5EGUtYewRwmtIgH1WMipU6dd51g9gg=
-=T/pi
+iHUEARYKAB0WIQR5wNv6Vu31ueD4B86OgXvrxvTahwUCamV/kQAKCRCOgXvrxvTa
+h6n5AQCzBTtkE8DuEp/T3B1kIdK9GCD+8hF6le4o1Rl8yRL9HwD+IMlVgdlWOtY1
+vT6+p3PI7D2qsHkYoJus3DePjUp6nwU=
+=5WxC
 -----END PGP SIGNATURE-----
