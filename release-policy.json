@@ -25,6 +25,14 @@
     "platform_installed_before_kernel": true
   },
   "documentation_language": "en",
+  "current_stable": {
+    "tag": "7.1.4-stable",
+    "candidate": "7.1.4-candidate.04",
+    "runtime": "7.1.4-1001-uconsole",
+    "kernel_package_version": "7.1.4-1001.1.uconsole.1",
+    "platform_package_version": "0.1.20",
+    "bundle_sha256": "b12738c7c0ae49c625598adf7e62b961b966d59d085f0c90c05cdef40525eb43"
+  },
   "release_tag_patterns": [
     "<upstream>-candidate.<NN>",
     "<upstream>-stable",

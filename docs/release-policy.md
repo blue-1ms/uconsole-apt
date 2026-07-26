@@ -24,6 +24,9 @@ the platform and Plymouth `.deb` files.
 - A Pages update is a new immutable `gh-pages` commit. It is generated and signed atomically;
   manual edits to `dists/` or `pool/` are forbidden.
 - A release already identified by a receipt or SHA is never rebuilt under the same version.
+- Stable channel composition must reuse every already-versioned kernel, platform, and Plymouth
+  package byte from the hardware-tested candidate. Rebuilding an auxiliary package under the
+  same Debian version is forbidden even when its source tree is unchanged.
 
 ## Naming and retention
 
@@ -75,3 +78,6 @@ Release notes are stored under `docs/releases/` and used as the source for GitHu
 Hardware validation and candidate promotion are controlled by the source repository. Promotion
 reuses the exact package bytes and checksums; it does not rebuild or replace this release. Kernel
 boot assets are always installed through initramfs, `flash-kernel`, and `piboot-try`.
+
+The current promotion is `7.1.4-candidate.04` to `7.1.4-stable`; its offline bundle SHA-256 is
+`b12738c7c0ae49c625598adf7e62b961b966d59d085f0c90c05cdef40525eb43`.

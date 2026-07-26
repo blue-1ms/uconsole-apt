@@ -21,6 +21,17 @@ def main() -> int:
         raise SystemExit("release immutability policy is disabled")
     if policy.get("resume_requires_exact_assets") is not True:
         raise SystemExit("draft resume must require the exact validated asset set")
+    stable = policy.get("current_stable", {})
+    expected_stable = {
+        "tag": "7.1.4-stable",
+        "candidate": "7.1.4-candidate.04",
+        "runtime": "7.1.4-1001-uconsole",
+        "kernel_package_version": "7.1.4-1001.1.uconsole.1",
+        "platform_package_version": "0.1.20",
+        "bundle_sha256": "b12738c7c0ae49c625598adf7e62b961b966d59d085f0c90c05cdef40525eb43",
+    }
+    if stable != expected_stable:
+        raise SystemExit("current stable identity is incomplete or inconsistent")
     direct = policy.get("direct_repository")
     if not isinstance(direct, dict):
         raise SystemExit("direct repository policy is missing")
@@ -85,6 +96,7 @@ def main() -> int:
         ROOT / "LICENSE",
         ROOT / "LICENSE-DOCS",
         ROOT / "NOTICE",
+        ROOT / "docs/releases/7.1.4-stable.md",
     )
     for path in required_docs:
         if not path.is_file() or not path.read_text(encoding="utf-8").strip():

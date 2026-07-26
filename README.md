@@ -131,11 +131,13 @@ verification, and recovery details.
 
 ## Updating an existing installation
 
-`uconsole-platform >= 0.1.17` owns the stable source, candidate opt-in, scoped keyring, and kernel
+`uconsole-platform >= 0.1.20` owns the stable source, candidate opt-in, scoped keyring, dynamic
+kernel receipt validator, and kernel
 policy. On a supported uConsole:
 
 ```bash
 sudo apt update
+sudo uconsole-apt-health
 sudo uconsole-kernel-policy-validate
 sudo apt install uconsole-kernel uconsole-platform uconsole-plymouth-theme
 sudo reboot
@@ -157,9 +159,10 @@ changing APT sources or preferences.
 - Userspace releases use `platform-<version>-stable`.
 
 The current stable kernel is
-[`7.1.3-stable`](https://github.com/blue-1ms/uconsole-apt/releases/tag/7.1.3-stable).
-Its individual `.deb` assets are byte-identical to the signed stable APT channel. The historical
-`0.1.0-candidate.16` release keeps the original offline bundle and receipt unchanged.
+[`7.1.4-stable`](https://github.com/blue-1ms/uconsole-apt/releases/tag/7.1.4-stable),
+promoted from the exact hardware-passed `7.1.4-candidate.04` bytes. Its individual `.deb`
+assets are byte-identical to the signed stable APT channel. `7.1.3-1003-uconsole` remains the
+sole N-1 fallback; the historical `0.1.0-candidate.16` release remains immutable.
 
 ## Release status
 
