@@ -60,8 +60,13 @@
   "validation_layers": {
     "fast_ci": "source-policy-only",
     "artifact": "signed-content-addressed-receipt-reuse",
-    "hardware": "ab-fat-cm4-and-single-n-minus-1",
+    "hardware": "ab-fat-cm4-and-release-typed-fallback",
     "stable_closeout": "readme-release-tag-retention-publication"
+  },
+  "fallback_policy": {
+    "kernel_rollout": "adjacent-hardware-passed-n-minus-1-kernel",
+    "ordinary_boot_asset_update": "previous-known-good-deployment",
+    "ordinary_update_same_kernel_allowed": true
   },
   "published_platform_releases": [
     {

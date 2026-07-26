@@ -149,8 +149,10 @@ keyring and signed `InRelease` metadata. Kernel installation remains under initr
 
 The platform package pins Ubuntu-origin `linux-*-raspi` kernel packages below installable
 priority, so a normal Ubuntu `apt upgrade` cannot replace the uConsole boot kernel. Raspberry Pi
-firmware packages remain eligible for updates. Run `sudo uconsole-kernel-policy-validate` after
-changing APT sources or preferences.
+firmware packages remain eligible for updates. If a firmware, initramfs or platform update stages
+new boot assets with the current kernel ABI, `piboot-try` uses the complete pre-update deployment
+as its fallback. The candidate and fallback may intentionally have the same kernel ABI. Run
+`sudo uconsole-kernel-policy-validate` after changing APT sources or preferences.
 
 ## Exact releases
 
@@ -162,8 +164,10 @@ The current stable kernel is
 [`7.1.4-stable`](https://github.com/blue-1ms/uconsole-apt/releases/tag/7.1.4-stable),
 promoted from the exact hardware-passed `7.1.4-candidate.04` bytes. Its individual `.deb`
 assets install runtime `7.1.4-1001-uconsole` and are byte-identical to the signed stable APT
-channel. `7.1.3-1003-uconsole` remains the
-sole N-1 fallback; the historical `0.1.0-candidate.16` release remains immutable.
+channel. The 7.1.4 kernel closeout used `7.1.3-1003-uconsole` as its tested N-1 kernel. A later
+ordinary firmware/initramfs update may make the previous 7.1.4 deployment the active boot
+fallback without changing that immutable kernel release evidence. The historical
+`0.1.0-candidate.16` release remains immutable.
 
 The same kernel stable transaction contains the exact tested `uconsole-platform 0.1.20` and
 `uconsole-plymouth-theme 0.1.2` packages. The separately published
@@ -182,7 +186,9 @@ compatible platform.
 - **Artifact validation** deeply validates each immutable package payload once and reuses only a
   detached-signature-verified, content-addressed receipt for identical bytes.
 - **Hardware stable gate** covers A/B try/promote, FAT diagnostics, CM4 hardware and the sole
-  adjacent N-1 fallback.
+  release-typed fallback. Kernel rollouts require the adjacent hardware-passed N-1 kernel;
+  ordinary boot-asset updates require the previous known-good deployment and may reuse the
+  current ABI.
 - **Stable closeout** alone checks README updates, GitHub Releases, immutable tags, retention and
   the final publication receipt.
 

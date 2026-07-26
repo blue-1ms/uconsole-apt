@@ -46,6 +46,11 @@ and must never downgrade it to the tested version.
 The repository retains the latest hardware-passed kernel and the adjacent N-1 package set during
 rollout. N-2 is removed only after promote, controlled fallback, and restoration succeed.
 
+That adjacent-version rule applies only to a kernel rollout. An ordinary Ubuntu, firmware,
+initramfs or platform boot-asset update stages a new deployment of the current kernel and retains
+the complete pre-update deployment as its fallback. Candidate and fallback may use the same ABI;
+receipt identity, boot assets and known-good state determine safety, not version inequality.
+
 ## Client trust boundary
 
 GitHub transports bytes but is not the package-signing trust root. Clients must verify:
@@ -104,6 +109,8 @@ initramfs and signed APT; platform payload validation covers ownership and maint
 An identical package set may reuse only its signed content-addressed receipt.
 
 The hardware stable gate separately covers A/B try/promote, FAT mailbox, display/backlight/DRM,
-input/audio/PMIC, Wi-Fi/BT/basic USB and the sole adjacent N-1 fallback. README, Release, tag,
-retention and publication checks run only during stable closeout. Kernel-only publication never
-runs image compose, mounted-image, GNOME or first-boot validation.
+input/audio/PMIC, Wi-Fi/BT/basic USB and the release-typed fallback. Kernel rollouts require the
+sole adjacent N-1 kernel; ordinary boot-asset updates require the previous known-good deployment
+and allow the same ABI. README, Release, tag, retention and publication checks run only during
+stable closeout. Kernel-only publication never runs image compose, mounted-image, GNOME or
+first-boot validation.

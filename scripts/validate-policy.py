@@ -83,11 +83,18 @@ def main() -> int:
     expected_layers = {
         "fast_ci": "source-policy-only",
         "artifact": "signed-content-addressed-receipt-reuse",
-        "hardware": "ab-fat-cm4-and-single-n-minus-1",
+        "hardware": "ab-fat-cm4-and-release-typed-fallback",
         "stable_closeout": "readme-release-tag-retention-publication",
     }
     if policy.get("validation_layers") != expected_layers:
         raise SystemExit("validation layers are incomplete")
+    expected_fallback = {
+        "kernel_rollout": "adjacent-hardware-passed-n-minus-1-kernel",
+        "ordinary_boot_asset_update": "previous-known-good-deployment",
+        "ordinary_update_same_kernel_allowed": True,
+    }
+    if policy.get("fallback_policy") != expected_fallback:
+        raise SystemExit("release-typed fallback policy is incomplete")
     direct = policy.get("direct_repository")
     if not isinstance(direct, dict):
         raise SystemExit("direct repository policy is missing")

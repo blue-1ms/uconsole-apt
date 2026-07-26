@@ -63,7 +63,9 @@ standard initramfs and `flash-kernel` hooks to stage a complete `new` slot, incl
 initramfs, DTB, Raspberry Pi overlay set, and uConsole overlays. `piboot-try` validates the new
 slot before promotion.
 
-If validation fails, the device returns to the N-1 known-good kernel. Diagnostic files remain on
+For a kernel rollout, validation failure returns to the adjacent N-1 known-good kernel. For an
+ordinary firmware, initramfs, system or platform boot-asset update, it returns to the complete
+pre-update deployment; that deployment may use the same kernel ABI. Diagnostic files remain on
 the FAT boot partition:
 
 ```text
