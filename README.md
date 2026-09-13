@@ -161,18 +161,17 @@ as its fallback. The candidate and fallback may intentionally have the same kern
 - Userspace releases use `platform-<version>-stable`.
 
 The current stable kernel is
-[`7.1.4-stable`](https://github.com/blue-1ms/uconsole-apt/releases/tag/7.1.4-stable),
-promoted from the exact hardware-passed `7.1.4-candidate.04` bytes. Its individual `.deb`
-assets install runtime `7.1.4-1001-uconsole` and are byte-identical to the signed stable APT
-channel. The 7.1.4 kernel closeout used `7.1.3-1003-uconsole` as its tested N-1 kernel. A later
-ordinary firmware/initramfs update may make the previous 7.1.4 deployment the active boot
-fallback without changing that immutable kernel release evidence. The historical
-`0.1.0-candidate.16` release remains immutable.
+[`6.18.51-stable`](https://github.com/blue-1ms/uconsole-apt/releases/tag/6.18.51-stable),
+promoted from the exact hardware-passed `6.18.51-candidate.06` transaction. Its individual
+`.deb` assets install runtime `6.18.51-1002-uconsole` and are byte-identical to the signed stable
+APT channel. The 6.18.51 closeout used `7.1.4-1001-uconsole` as its tested, sole N-1 kernel and
+proved both fallback and recovery. The historical 7.1.4, 7.1.3 and `0.1.0-candidate.16`
+releases remain immutable.
 
-The same kernel stable transaction contains the exact tested `uconsole-platform 0.1.20` and
+The same kernel stable transaction contains the exact tested `uconsole-platform 0.1.25` and
 `uconsole-plymouth-theme 0.1.2` packages. The separately published
 [`platform-0.1.20-stable`](https://github.com/blue-1ms/uconsole-apt/releases/tag/platform-0.1.20-stable)
-is an already immutable historical additional Release; future normal kernel closeouts do not
+is an immutable historical additional Release; normal kernel closeouts do not
 require a second platform Release. A separate `platform-<semver>-stable` tag is used only when
 the kernel is unchanged and the platform is released independently.
 

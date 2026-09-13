@@ -92,8 +92,9 @@ Hardware validation and candidate promotion are controlled by the source reposit
 reuses the exact package bytes and checksums; it does not rebuild or replace this release. Kernel
 boot assets are always installed through initramfs, `flash-kernel`, and `piboot-try`.
 
-The current promotion is `7.1.4-candidate.04` to `7.1.4-stable`; its offline bundle SHA-256 is
-`b12738c7c0ae49c625598adf7e62b961b966d59d085f0c90c05cdef40525eb43`.
+The current promotion is `6.18.51-candidate.06` to `6.18.51-stable`; its immutable candidate
+bundle SHA-256 is
+`14d5833e4bf74e0db59009ab7f64d2774e92ab792bd16db53a2e1649cae8ae13`.
 
 Kernel closeout is incomplete until all release-repository README files identify the new kernel,
 runtime ABI, tested/minimum platform and fallback. Those README commits, all Release URLs, exact
