@@ -2,25 +2,25 @@ Origin: blue-1ms-uconsole
 Label: uConsole Ubuntu
 Suite: candidate
 Codename: candidate
-Date: Sun, 26 Jul 2026 03:31:31 UTC
+Date: Sun, 13 Sep 2026 03:05:59 UTC
 Architectures: arm64
 Components: main
 Description: Signed uConsole CM4 Lite kernel and platform packages
 MD5Sum:
- 5cdb9e9064b7379631661c3260977c2a 6304 main/binary-arm64/Packages
- 0a8790c4cf6812b2ecdda48f8d73f1d0 2115 main/binary-arm64/Packages.gz
+ 95a31ee065dace3d09d50d58e88dee54 6380 main/binary-arm64/Packages
+ c5190de1efa680b0cebe857e9c9ed073 2123 main/binary-arm64/Packages.gz
  321ce3af1ea9a6a2a14db56402ab2843 171 main/binary-arm64/Release
- 8db6d442f26449cfd7d82ba3d8c1d3aa 3286210 main/Contents-arm64
- ed3486d74c54f14f65564cc3c9e88ccf 175389 main/Contents-arm64.gz
+ 015b80f5905f9ff290d4a5fab48222d0 3298056 main/Contents-arm64
+ ab6e8b56162863d90994d4838387aaaa 171541 main/Contents-arm64.gz
 SHA1:
- 15dc28ddaceeafae1427e3d4e011526fbaca48d4 6304 main/binary-arm64/Packages
- 6bb2965f15f5370316ed553d82fb3f7ee6b44172 2115 main/binary-arm64/Packages.gz
+ e4ad80ee62ff465075a08891f04dc61f8c26ad0d 6380 main/binary-arm64/Packages
+ fa4444f3bf5f642047850478dbc3096ff79a7dbe 2123 main/binary-arm64/Packages.gz
  d59d8477accc7e9cfdcb7d1a441cd23a6277b250 171 main/binary-arm64/Release
- db328eac42783f2b21f25032c16b47526f18469e 3286210 main/Contents-arm64
- b20d6d9753dabdbeb5125d3f4fbaf385cbeccd7d 175389 main/Contents-arm64.gz
+ 31174e74c463fa7cff0d8c5d611d52e5ad3d5ceb 3298056 main/Contents-arm64
+ 780e026516bb41fd1782cbc3ae2e4e5266f9af10 171541 main/Contents-arm64.gz
 SHA256:
- 7e97ac5a212656b8c8c9ad5b61e01bf6a371a36dc7684431572761b70d35cbfc 6304 main/binary-arm64/Packages
- ec873d4b62c44dfd0361e2e2f40ee40b6fa4b36eaa237d154818845bc9fe6a75 2115 main/binary-arm64/Packages.gz
+ de609a6d7dcfd75030dc3358afa59277220a33e4a08640e934eec752c67e9631 6380 main/binary-arm64/Packages
+ d6b2d8c78a64d3604a0cb4f2a308f6f7614a1b10ab60bc387f8acb4eaee945d3 2123 main/binary-arm64/Packages.gz
  bdc9e57e0520ae3110f1d8d01ddda967e8acdb0b0ea1698e5475981120220278 171 main/binary-arm64/Release
- 4e57180f91d7023058cdc755eb527bf9d02043f4174179bc3860ba7e16e5bfc5 3286210 main/Contents-arm64
- f94003981db2f14b731480497d54aacbbaf3cb359adb652e4696dc114231110b 175389 main/Contents-arm64.gz
+ 760690cec803500e73c692cb62c149b567dbfa8ece93d40f8a687e4b055196e1 3298056 main/Contents-arm64
+ 7f2bee0454a5a1bf4d6814534a92fa9d23a0f28798242375fbad0d49671a1423 171541 main/Contents-arm64.gz

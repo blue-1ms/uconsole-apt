@@ -1,57 +1,57 @@
 {
   "kernel_bundle": {
-    "filename": "uconsole-apt-repository-7.1.4-candidate.04.tar.zst",
-    "sha256": "b12738c7c0ae49c625598adf7e62b961b966d59d085f0c90c05cdef40525eb43"
+    "filename": "uconsole-apt-repository-6.18.51-candidate.06.tar.zst",
+    "sha256": "14d5833e4bf74e0db59009ab7f64d2774e92ab792bd16db53a2e1649cae8ae13"
   },
-  "manifest_sha256": "433ff8cde717a3c7c27e1566e1527b26200f985f961b6efff727847604eb9b93",
+  "manifest_sha256": "8ad32fcfc45a790f042e3cd1f026b034173d833b098023f351c00b38922edf0f",
   "packages": [
     {
       "architecture": "arm64",
-      "package": "linux-buildinfo-7.1.4-1001-uconsole",
-      "path": "pool/main/l/linux-uconsole/linux-buildinfo-7.1.4-1001-uconsole_7.1.4-1001.1.uconsole.1_arm64.deb",
-      "sha256": "8165334ad42c8130d7062303419e5cd4db804682c785daf824792ebebeb74d50",
-      "size": 341438,
-      "version": "7.1.4-1001.1.uconsole.1"
+      "package": "linux-buildinfo-6.18.51-1002-uconsole",
+      "path": "pool/main/l/linux-uconsole/linux-buildinfo-6.18.51-1002-uconsole_6.18.51-1002.1.uconsole.1_arm64.deb",
+      "sha256": "8eed71d4dbfa7f7c5358fc411f72f74bd95d82760d737b2e1ada6426afc1bdec",
+      "size": 333758,
+      "version": "1:6.18.51-1002.1.uconsole.1"
     },
     {
       "architecture": "arm64",
-      "package": "linux-headers-7.1.4-1001-uconsole",
-      "path": "pool/main/l/linux-uconsole/linux-headers-7.1.4-1001-uconsole_7.1.4-1001.1.uconsole.1_arm64.deb",
-      "sha256": "6f5e7808868cb4fd164c3eee0343fae22b7861a1e2de46354327db4a3999b15f",
-      "size": 57852186,
-      "version": "7.1.4-1001.1.uconsole.1"
+      "package": "linux-headers-6.18.51-1002-uconsole",
+      "path": "pool/main/l/linux-uconsole/linux-headers-6.18.51-1002-uconsole_6.18.51-1002.1.uconsole.1_arm64.deb",
+      "sha256": "4fa4a2432b0ab72dd152aa25e6483c727df66c087bb6541129f85609601e4de9",
+      "size": 52858856,
+      "version": "1:6.18.51-1002.1.uconsole.1"
     },
     {
       "architecture": "arm64",
-      "package": "linux-image-7.1.4-1001-uconsole",
-      "path": "pool/main/l/linux-uconsole/linux-image-7.1.4-1001-uconsole_7.1.4-1001.1.uconsole.1_arm64.deb",
-      "sha256": "d14c7ea7faa575639310dc62cf853c0e4baa677820f1efe7f06abb391e30df45",
-      "size": 15430238,
-      "version": "7.1.4-1001.1.uconsole.1"
+      "package": "linux-image-6.18.51-1002-uconsole",
+      "path": "pool/main/l/linux-uconsole/linux-image-6.18.51-1002-uconsole_6.18.51-1002.1.uconsole.1_arm64.deb",
+      "sha256": "87170d40a79f6ffd2c9d7a8bf294b5f31c57202a104e5a737e3866a6e4c970d1",
+      "size": 14791570,
+      "version": "1:6.18.51-1002.1.uconsole.1"
     },
     {
       "architecture": "arm64",
-      "package": "linux-modules-7.1.4-1001-uconsole",
-      "path": "pool/main/l/linux-uconsole/linux-modules-7.1.4-1001-uconsole_7.1.4-1001.1.uconsole.1_arm64.deb",
-      "sha256": "465c08617706c8954dfc29bff9c4415bb5f29d177d76413b2fd6990b4164556c",
-      "size": 70046800,
-      "version": "7.1.4-1001.1.uconsole.1"
+      "package": "linux-modules-6.18.51-1002-uconsole",
+      "path": "pool/main/l/linux-uconsole/linux-modules-6.18.51-1002-uconsole_6.18.51-1002.1.uconsole.1_arm64.deb",
+      "sha256": "e804a609383c7497d4ff237ad94e92d0fb9469297ece7d137b41d73b9ad5d2b9",
+      "size": 67709974,
+      "version": "1:6.18.51-1002.1.uconsole.1"
     },
     {
       "architecture": "arm64",
       "package": "uconsole-kernel",
-      "path": "pool/main/l/linux-uconsole/uconsole-kernel_7.1.4-1001.1.uconsole.1_arm64.deb",
-      "sha256": "606c3d34cd5c449901588a567dc2622e12c8580c56373181d65c7c929a57d0eb",
-      "size": 1520,
-      "version": "7.1.4-1001.1.uconsole.1"
+      "path": "pool/main/l/linux-uconsole/uconsole-kernel_6.18.51-1002.1.uconsole.1_arm64.deb",
+      "sha256": "1813c9511a9a524c1006a42b288150f7b0aad753231b5fc5937bf63cbb20843f",
+      "size": 1530,
+      "version": "1:6.18.51-1002.1.uconsole.1"
     },
     {
       "architecture": "arm64",
       "package": "uconsole-platform",
-      "path": "pool/main/l/linux-uconsole-userspace/uconsole-platform_0.1.20_arm64.deb",
-      "sha256": "861323a9a285f54efff9c9478e57fef56ee98fcc86defb0d05025b4648aa2eda",
-      "size": 43868,
-      "version": "0.1.20"
+      "path": "pool/main/l/linux-uconsole-userspace/uconsole-platform_0.1.25_arm64.deb",
+      "sha256": "433ce22c4501087a4fcd99d6e57896ca1391d03bacec1137b24281b166eebd36",
+      "size": 46650,
+      "version": "0.1.25"
     },
     {
       "architecture": "all",
